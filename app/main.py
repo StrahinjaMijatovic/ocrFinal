@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from app.services.job_store import init_db, fail_stale_jobs
 from app.api.routes import analyze, status, categories, health
 
@@ -11,6 +12,12 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="VISAOcr", lifespan=lifespan)
+
+
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse(url="/docs")
+
 
 app.include_router(analyze.router)
 app.include_router(status.router)
