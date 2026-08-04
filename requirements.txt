@@ -1,0 +1,15 @@
+fastapi==0.115.5
+uvicorn==0.32.1
+setuptools>=70.0.0  # required by paddlepaddle at import time; not bundled in Python 3.12+ venvs
+paddlepaddle==2.6.2
+paddleocr==2.9.1
+pymupdf==1.24.14
+pyodbc==5.2.0
+httpx==0.28.0
+pydantic-settings==2.6.1
+python-dotenv==1.0.1
+pyyaml==6.0.2
+aiosqlite==0.20.0
+pytest==8.3.4
+pytest-asyncio==0.24.0
+pytest-mock==3.14.0

@@ -1,0 +1,95 @@
+name: "structuring_v2_few_shot"
+version: "2.0"
+temperature: 0.1
+system: |
+  You are a document analysis expert for visa processing in Serbia.
+  Extract structured data from OCR text of scanned visa application documents.
+  Supported document types: PASSPORT, ID_CARD, INVITATION_LETTER, VISA_APPLICATION,
+  RESIDENCE_PERMIT, INSURANCE, ACCOMMODATION_CONFIRMATION,
+  EMAIL_CORRESPONDENCE, DECLARATION, BANK_STATEMENT, OTHER.
+  Rules:
+  - Return ONLY valid JSON, no markdown, no explanation.
+  - Use null for fields that cannot be read.
+  - All dates in ISO format YYYY-MM-DD.
+  - confidence: float 0.0-1.0 (readability of the OCR text).
+  - PASSPORT and ID_CARD: only classify the type; do not extract fields (return empty fields).
+few_shots:
+  - input: |
+      Udruženje kreativno-edukativni centar "Muzički Atelje"
+      Koče Kolarova 3, Novi Sad
+      Association of Muzicki Atelje invites Na-Na Zhang on the
+      International Gathering of Violinists in Serbia, Sremski Karlovci,
+      Novi Sad in period from 04. to 08. 04. 2019.
+      Director: Milan Cizmic
+    output: |
+      {
+        "document_type": "INVITATION_LETTER",
+        "confidence": 0.88,
+        "language": "English",
+        "fields": {
+          "inviting_org": "Muzički Atelje",
+          "inviting_person": "Milan Cizmic",
+          "event": "International Gathering of Violinists",
+          "period_from": "2019-04-04",
+          "period_to": "2019-04-08",
+          "purpose": "Cultural event - violin competition",
+          "host_address": "Koče Kolarova 3, Novi Sad"
+        }
+      }
+  - input: |
+      TURISTIČKA ORGANIZACIJA OPŠTINE SREMSKI KARLOVCI
+      Ms. Zhang Na Na
+      Reservation confirmation
+      I confirm booking of accommodation for Zhang Na Na and Chen Shuting
+      in guest house "Zeravica b&b", Sremski Karlovci, Serbia,
+      for period 05.04.2019 to 08.04.2019.
+    output: |
+      {
+        "document_type": "ACCOMMODATION_CONFIRMATION",
+        "confidence": 0.92,
+        "language": "English",
+        "fields": {
+          "hotel_name": "Zeravica b&b",
+          "guest_name": "Zhang Na Na",
+          "check_in": "2019-04-05",
+          "check_out": "2019-04-08",
+          "address": "Sremski Karlovci, Serbia",
+          "confirmation_number": null
+        }
+      }
+  - input: |
+      Allianz Tiriac
+      Polita de asigurare de calatorie in strainatate nr. VCJ/860063618
+      Asigurat: ZHANG NANA
+      Perioada asigurata: 04.04.2019 - 08.04.2019
+      Suma asigurata: 30,000 EUR
+    output: |
+      {
+        "document_type": "INSURANCE",
+        "confidence": 0.90,
+        "language": "Romanian",
+        "fields": {
+          "insured_name": "ZHANG NANA",
+          "policy_number": "VCJ/860063618",
+          "valid_from": "2019-04-04",
+          "valid_to": "2019-04-08",
+          "coverage_amount": "30000 EUR",
+          "insurer": "Allianz Tiriac"
+        }
+      }
+template: |
+  {system}
+
+  EXAMPLES:
+  {few_shots_formatted}
+
+  NOW ANALYZE THIS DOCUMENT:
+  {ocr_text}
+
+  Return JSON:
+  {{
+    "document_type": "<TYPE>",
+    "confidence": <float>,
+    "language": "<detected language>",
+    "fields": {{ <relevant fields> }}
+  }}

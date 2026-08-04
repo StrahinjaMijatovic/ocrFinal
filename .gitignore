@@ -1,0 +1,68 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+ENV/
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Databases ----
+*.db
+*.sqlite
+*.sqlite3
+jobs.db
+
+# ---- Logs ----
+*.log
+server.log
+server_err.log
+
+# ---- Testing / coverage ----
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- OCR / model / runtime artifacts ----
+*.onnx
+*.pdmodel
+*.pdiparams
+uploads/
+tmp/
+temp/
+runs/
+output/
+
+# ---- Editors / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Local session / agent state ----
+.remember/
+.claude/settings.local.json

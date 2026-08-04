@@ -1,0 +1,74 @@
+[
+  {
+    "code": "MINOR_TRAVELING_ALONE",
+    "reason": "Minor traveling without parent/guardian",
+    "description": "The child is traveling alone without a parent or guardian.",
+    "discovered_at": "2026-06-09T11:57:12.750654+00:00"
+  },
+  {
+    "code": "MULTIPLE_ACCOMMODATIONS",
+    "reason": "Multiple accommodations booked in Serbia",
+    "description": "The applicant has multiple hotel bookings in different locations within Serbia.",
+    "discovered_at": "2026-06-09T12:41:29.675326+00:00"
+  },
+  {
+    "code": "15",
+    "reason": "Declaration for long-term visa application",
+    "description": "Documents supporting a declaration for a long-term residence visa in Serbia.",
+    "discovered_at": "2026-06-09T13:24:14.651218+00:00"
+  },
+  {
+    "code": "INSURANCE_COVERAGE",
+    "reason": "Insurance coverage for Serbia trip.",
+    "description": "The applicant has insurance that covers their stay in Serbia.",
+    "discovered_at": "2026-06-10T10:28:50.656036+00:00"
+  },
+  {
+    "code": "APPLICANT_STANDARD",
+    "reason": "Standard applicant with no specific issues.",
+    "description": "Applicant meets standard criteria without any significant concerns.",
+    "discovered_at": "2026-06-15T09:27:35.590161+00:00"
+  },
+  {
+    "code": "PASSPORT_OK",
+    "reason": "Passport valid for 1002 days, meets requirements.",
+    "description": "The passport is valid and meets the required duration.",
+    "discovered_at": "2026-06-24T10:01:43.874127+00:00"
+  },
+  {
+    "code": "DUPLICATE_REQUEST",
+    "reason": "Previous request found (127782).",
+    "description": "The applicant has a history of submitting multiple requests.",
+    "discovered_at": "2026-06-25T10:56:51.244673+00:00"
+  },
+  {
+    "code": "FUTURE_TRAVEL_ITINERARY",
+    "reason": "Future travel itinerary provided for dates beyond application.",
+    "description": "Travel plans are detailed for future dates, not relevant to current application.",
+    "discovered_at": "2026-06-25T10:56:51.244673+00:00"
+  },
+  {
+    "code": "LOW_FINANCIAL_SOURCES",
+    "reason": "Limited financial resources indicated.",
+    "description": "Bank statements show limited and recent transactions.",
+    "discovered_at": "2026-06-25T12:04:22.704393+00:00"
+  },
+  {
+    "code": "MULTIPLE_PASSPORTS",
+    "reason": "Multiple passports in document",
+    "description": "The document contains information for multiple passengers.",
+    "discovered_at": "2026-06-26T12:54:58.446065+00:00"
+  },
+  {
+    "code": "FLIGHT_BOOKING",
+    "reason": "Multiple flight bookings for the trip",
+    "description": "Passenger has booked flights to and from multiple countries as part of their travel itinerary.",
+    "discovered_at": "2026-06-26T13:09:04.698128+00:00"
+  },
+  {
+    "code": "PASSPORT_MULTIPLE_ENTRIES",
+    "reason": "Multiple entry visa submitted",
+    "description": "Passport allows multiple entries",
+    "discovered_at": "2026-06-26T13:17:49.666200+00:00"
+  }
+]

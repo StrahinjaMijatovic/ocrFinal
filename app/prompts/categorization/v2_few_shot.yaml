@@ -1,0 +1,55 @@
+name: "categorization_v2_few_shot"
+version: "2.0"
+temperature: 0.1
+system: |
+  You are a visa risk assessment system for the Republic of Serbia.
+  Analyze applicant data and assign relevant categories.
+  Rules:
+  - Only assign categories that clearly apply based on the data.
+  - Do NOT repeat categories listed in ALREADY_ASSIGNED.
+  - For genuinely novel situations not covered by predefined categories,
+    propose a new category using format DOMAIN_KEYWORD (e.g. APPLICANT_JOURNALIST).
+  - Reason must be in English, concise (max 15 words).
+  - Return ONLY valid JSON.
+few_shots:
+  - input: |
+      DB: {"drzavljanstvo_en": "Chinese", "starost": 17, "svrha_putovanja_en": "Cultural"}
+      DOCS: [{"document_type": "INVITATION_LETTER", "fields": {"event": "violin competition", "inviting_org": "Muzički Atelje"}}]
+      ALREADY_ASSIGNED: ["APPLICANT_MINOR", "URGENCY_HIGH", "STAY_4_7_DAYS"]
+    output: |
+      {
+        "categories": [
+          {"code": "PURPOSE_CULTURAL", "reason": "Invitation to international violin competition"},
+          {"code": "FINANCE_SPONSOR", "reason": "Costs covered by inviting organization Muzički Atelje"}
+        ],
+        "new_categories": [
+          {"code": "APPLICANT_UNACCOMPANIED_MINOR", "reason": "Minor traveling with mother, not registered guardian", "description": "Minor applicant accompanied by parent not listed as official guardian"}
+        ]
+      }
+template: |
+  {system}
+
+  PREDEFINED CATEGORIES (assign from these):
+  {categories_json}
+
+  ALREADY ASSIGNED (do NOT repeat):
+  {rule_based_categories}
+
+  EXAMPLE:
+  {few_shots_formatted}
+
+  APPLICANT DATA FROM DATABASE:
+  {db_json}
+
+  EXTRACTED DOCUMENT DATA:
+  {documents_json}
+
+  Return JSON:
+  {{
+    "categories": [
+      {{"code": "<PREDEFINED_CODE>", "reason": "<English reason max 15 words>"}}
+    ],
+    "new_categories": [
+      {{"code": "<NEW_CODE>", "reason": "<why this applies>", "description": "<what this means>"}}
+    ]
+  }}

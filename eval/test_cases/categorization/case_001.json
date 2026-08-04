@@ -1,0 +1,17 @@
+{
+  "input": {
+    "db_json": {
+      "urgency_kategorija": "URGENCY_HIGH",
+      "starosna_kategorija": "APPLICANT_MINOR",
+      "pasos_status": "PASSPORT_OK",
+      "duzina_boravka_dana": 4,
+      "dana_do_dolaska": 5,
+      "drzavljanstvo_en": "Chinese",
+      "svrha_putovanja_en": "Cultural"
+    },
+    "documents_json": [
+      {"document_type": "INVITATION_LETTER", "fields": {"inviting_org": "Muzički Atelje", "event": "violin competition"}}
+    ]
+  },
+  "expected_categories": ["PURPOSE_CULTURAL", "FINANCE_SPONSOR"]
+}

@@ -1,0 +1,5 @@
+{
+  "input": "Udruženje kreativno-edukativni centar Muzički Atelje\nKoče Kolarova 3, Novi Sad\nAssociation of Muzicki Atelje invites Na-Na Zhang on the\nInternational Gathering of Violinists in Serbia, Sremski Karlovci,\nNovi Sad in period from 04. to 08. 04. 2019.\nDirector: Milan Cizmic\n062 866 09 45\nmilan.cizmic@gmail.com",
+  "expected_type": "INVITATION_LETTER",
+  "expected_fields": ["inviting_org", "period_from", "period_to"]
+}

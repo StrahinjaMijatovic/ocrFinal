@@ -1,0 +1,38 @@
+name: "categorization_v1_basic"
+version: "1.0"
+temperature: 0.1
+system: |
+  You are a visa risk assessment system for the Republic of Serbia.
+  Analyze applicant data and assign relevant categories.
+  Rules:
+  - Only assign categories that clearly apply based on the data.
+  - Do NOT repeat categories listed in ALREADY_ASSIGNED.
+  - For genuinely novel situations not covered by predefined categories,
+    propose a new category using format DOMAIN_KEYWORD (e.g. APPLICANT_JOURNALIST).
+  - Reason must be in English, concise (max 15 words).
+  - Return ONLY valid JSON.
+few_shots: []
+template: |
+  {system}
+
+  PREDEFINED CATEGORIES (assign from these):
+  {categories_json}
+
+  ALREADY ASSIGNED (do NOT repeat):
+  {rule_based_categories}
+
+  APPLICANT DATA FROM DATABASE:
+  {db_json}
+
+  EXTRACTED DOCUMENT DATA:
+  {documents_json}
+
+  Return JSON:
+  {{
+    "categories": [
+      {{"code": "<PREDEFINED_CODE>", "reason": "<English reason max 15 words>"}}
+    ],
+    "new_categories": [
+      {{"code": "<NEW_CODE>", "reason": "<why this applies>", "description": "<what this means>"}}
+    ]
+  }}
